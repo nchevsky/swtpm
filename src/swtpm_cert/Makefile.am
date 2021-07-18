@@ -4,6 +4,9 @@
 # For the license, see the LICENSE file in the root directory.
 #
 
+AM_CFLAGS = @AM_CFLAGS@
+AM_LDFLAGS = @AM_LDFLAGS@
+
 noinst_HEADERS =
 
 bin_PROGRAMS =
@@ -18,7 +21,12 @@ swtpm_cert_SOURCES = \
 
 swtpm_cert_CFLAGS = \
 	-I$(top_builddir)/include \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir)/include \
+	$(AM_CFLAGS)
+
+swtpm_cert_LDFLAGS = \
+	$(AM_LDFLAGS) \
+	$(HARDENING_LDFLAGS)
 
 ek-cert.o : tpm_asn1.h
 

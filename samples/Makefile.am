@@ -4,6 +4,9 @@
 # For the license, see the LICENSE file in the root directory.
 #
 
+AM_CFLAGS = @AM_CFLAGS@
+AM_LDFLAGS = @AM_LDFLAGS@
+
 samplesconfdir = $(datadir)/@PACKAGE@
 samplessysconfdir = $(sysconfdir)
 
@@ -37,11 +40,13 @@ swtpm_localca_LDADD = \
 
 swtpm_localca_LDFLAGS = \
 	-L$(top_builddir)/src/utils -lswtpm_utils \
+	$(AM_LDFLAGS) \
 	$(HARDENING_LDFLAGS) \
 	$(GLIB_LIBS)
 
 swtpm_localca_CFLAGS = \
 	-I$(top_srcdir)/src/utils \
+	$(AM_CFLAGS) \
 	$(HARDENING_CFLAGS) \
 	$(GLIB_CFLAGS)
 
